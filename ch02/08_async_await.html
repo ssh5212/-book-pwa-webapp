@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngelPlayer</title>
+</head>
+<body>
+    <button onclick="fnDoAsyncFunc()">async, await</button>
+</body>
+<script>
+    async function fnDoAsyncFunc() {
+        console.log(await fnProductReady(1, 2000));
+        console.log(await fnProductReady(2, 1000));
+        console.log(await fnProductReady(3, 500));
+    }
+
+    function fnProductReady(pNum, pTime) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                console.log(pNum);
+                resolve('상품이 성공적으로 배송되었습니다.');
+            }, pTime);
+        });
+    }
+</script>
+</html>
