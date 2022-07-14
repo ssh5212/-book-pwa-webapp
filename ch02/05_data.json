@@ -1,0 +1,7 @@
+{
+    "items" : [
+        { "name": "Angel1", "age": 10, "email": "angel@player"},
+        { "name": "Angel2", "age": 20, "email": "angel@player"},
+        { "name": "Angel3", "age": 30, "email": "angel@player"}
+    ]
+}
