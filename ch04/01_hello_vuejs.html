@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+</head>
+<body>
+    <div id="main">
+        <p>{{ sTitle }}</p>
+    </div>
+</body>
+
+<script>
+    // 뷰 객체 생성하여 앱을 초기화
+    new Vue({
+        // el : 화면에 표시될 영역을 지정하여 연결
+        el: '#main',
+        // data : 전달할 데이터
+        data: {
+            sTitle: 'Hello, Vue!'
+        }
+    });
+</script>
+</html>
