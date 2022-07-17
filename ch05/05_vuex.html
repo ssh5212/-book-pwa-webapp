@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- vuex CDN에 연결 -->
+    <script src="https://unpkg.com/vuex@3"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>hello</h1>
+        <com-counter msg="counter1"></com-counter>
+        <com-counter msg="counter2"></com-counter>
+    </div>
+</body>
+
+<script>
+    const store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        mutations: {
+            fnIncData: function(state) {
+                return state.count++
+            },
+            fnDecData: state => state.count--
+        },
+        getters: {
+            fnGetData(state) {
+                return state.count;
+            }
+        },
+        actions: {
+            async fnDecData({
+                commit
+            }, state) {
+                const result = await api.fnDecrement();
+                if(result == true) commit('fnDecData');
+            }
+        }
+    });
+
+    const api = {
+        fnDecrement() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(true);
+                }, 1000);
+            });
+        }
+    };
+
+    // 컴포넌트로 신규 엘리먼트(태그) 등록
+    Vue.component('com-counter', {
+        props: ['msg'],
+        template: `
+        <div>
+            <h2>{{ msg }}</h2>
+            <p>Counter : {{ fnGetCount }}</p>
+            <button @click="fnIncCount">+1 count</button>
+            <button @click="fnDecCount">-1 count</button>
+            <hr>
+        </div>
+        `,
+        computed: {
+            fnGetCount() {
+                return store.getters.fnGetData;
+            }
+        },
+        methods: {
+            fnIncCount() {
+                store.commit('fnIncData')
+            },
+            fnDecCount() {
+                store.dispatch('fnDecData') // 비동기는 반드시 dispatch()를 통해서 접근해야 함
+            }
+        }
+    })
+
+    var gApp = new Vue({
+        el: '#app',
+        store // store 사용을 선언 (vuex 인스턴스 등록)
+    })
+</script>
+
+
+
+</html>
