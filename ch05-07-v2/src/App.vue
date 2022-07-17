@@ -1,9 +1,13 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <h1>안녕하세요</h1>
+    <router-view></router-view>
+    <hr>
+    <p>User Router Link:
+      <router-link to="/main">Main Page</router-link>
+      <router-link to="/Sub">Sub Page</router-link>
+    </p>
+  </div>
 </template>
 
 <style>
